@@ -1,0 +1,18 @@
+$PRIMARY: #231F20;
+$SECONDARY: #BB4430;
+
+a.navbar-item, a.navbar-link {
+  text-transform: uppercase;
+  font-size: 0.7em;
+}
+
+div.navbar-brand > a.navbar-item {
+  text-transform: uppercase;
+  color: $PRIMARY;
+  font-size: 1em;
+
+  & > span {
+    font-weight: bold;
+    color: $SECONDARY;
+  }
+}

@@ -12,6 +12,9 @@ gem "coffee-rails", "~> 4.2"
 gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 
+gem "bulma-rails", "~> 0.7.5"
+gem 'jquery-rails'
+
 group :development, :test do
   gem "factory_bot_rails"
   gem "pry"
