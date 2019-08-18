@@ -23,7 +23,7 @@ install:
 - npm install -g yarn
 - yarn
 script:
-- bundle exex rspec
+- bundle exec rspec
 deploy:
   provider: heroku
   app: calm-journey-55060
