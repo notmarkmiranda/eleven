@@ -1,0 +1,29 @@
+language: ruby
+rvm:
+- 2.5.3
+env:
+  matrix:
+  - DB=postgresql
+before_script:
+- cp config/database.travis.yml config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+cache:
+  bundler: true
+  directories:
+  - node_modules
+  yarn: true
+install:
+- bundle install
+- nvm install node
+- node -v
+- npm install -g yarn
+- yarn
+script:
+- bundle exex rspec
+deploy:
+  provider: heroku
+  app: calm-journey-55060
+  run: rake db:migrate
+  api_key:
+    secure: rBiGZwPPjOGj2xEySJb8lJRGZrtMjgchAfLtZZ0AV/LuYVRVtDgkZxbJo+X0QRy6GFtyosIqYL0GqKD3ejC7I1N4fzREUsatDasVZvxvYI8Anle/HvS6Y9+VYTlRCKQs3U6dLKBN/7XYQ81tBEaRAMjJidDr/LAgf2lNDnu4rhSpNcdWGQg1jKz0R/7nYS9oRijP1ZXytjJxC1YiPHv9O+YcxzQ3wnK/YHYJ0Hk8zHBe6fmA4rD851P5nBGg96AZ3fwRAD1W+TvkTtizCGhDFWLAdFurfqvtYW+3C6mkRc7H0furZKAqF/bAe1iK1KsB1TUUYa3Sx6LYq/rbedbJkDk2J6okfPWvdcIOjY6wZGWgRy6PTEfu02Djzb8kAnaVyf4ZP5wA2VZrDvDNKQNXDOE5QLZ8ZsZ2po08c5umMsQ+0JAxPcqa04UE30y37nB+drOAqscoqz2UBt7E2HR1C358pUD1jqREC/t/Q6MJo6cLUoqbRl9/UcB7tW58lbkeoA6pHQdiM1XstOR7xF9GvPuzgjdWsSDcvnFzRiwjuOpUYLCSlvFUz9FruuJF+6rGtHxsz5SJHVO0WhTmmhNwi2uHdVv0JHsCnMrDTXZ66uFHCaJHYip3vWcToAfMtwcVpINzL8Fa/c+UUZnP6uEciHaIuzK1calmFzgXOelep0k=
