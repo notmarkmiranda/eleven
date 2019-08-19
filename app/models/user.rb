@@ -7,5 +7,5 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
-  validates :email, uniqueness: { case_sensitive: false }, presence: true
+  validates :email, uniqueness: {case_sensitive: false}, presence: true
 end

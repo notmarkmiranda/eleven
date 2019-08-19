@@ -5,12 +5,12 @@ describe "Visitor can log in", type: :feature do
 
   before do
     visit new_user_session_path
-    fill_in 'Email', with: user.email
+    fill_in "Email", with: user.email
   end
 
   describe "with correct email / password" do
     it "allows the user to log in" do
-      fill_in 'Password', with: 'password'
+      fill_in "Password", with: "password"
       click_button "Let's Go!"
 
       expect(page).to have_content "dashboard"
