@@ -48,10 +48,10 @@
         <div class="navbar-item">
           <div class="buttons">
             <% if current_user %>
-              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-normalv' %>
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-small' %>
             <% else %>
-              <%= link_to "Sign up", new_user_registration_path, class: 'button is-normal' %>
-              <%= link_to "Log in", new_user_session_path, class: 'button is-normal' %>
+              <%= link_to "Sign up", new_user_registration_path, class: 'button is-small' %>
+              <%= link_to "Log in", new_user_session_path, class: 'button is-small' %>
             <% end %>
           </div>
         </div>
