@@ -47,12 +47,12 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-normal">
-              Sign up
-            </a>
-            <a class="button is-normal">
-              Log in
-            </a>
+            <% if current_user %>
+              <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'button is-normalv' %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, class: 'button is-normal' %>
+              <%= link_to "Log in", new_user_session_path, class: 'button is-normal' %>
+            <% end %>
           </div>
         </div>
       </div>
