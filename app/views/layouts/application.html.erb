@@ -13,9 +13,7 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class="container">
-      <%= render partial: "shared/navbar" %>
-      <%= yield %>
-    </div>
+    <%= render partial: "shared/navbar" %>
+    <%= yield %>
   </body>
 </html>

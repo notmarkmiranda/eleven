@@ -13,7 +13,7 @@ describe "Visitor can log in", type: :feature do
       fill_in "Password", with: "password"
       click_button "Let's Go!"
 
-      expect(page).to have_content "dashboard!"
+      expect(page).to have_content "Dashboard!"
     end
   end
 
@@ -23,7 +23,7 @@ describe "Visitor can log in", type: :feature do
       click_button "Let's Go!"
 
       expect(page).to have_content "Invalid Email or password"
-      expect(page).not_to have_content "dashboard!"
+      expect(page).not_to have_content "Dashboard!"
     end
   end
 end
