@@ -1,8 +1,16 @@
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Log in!
+      </h1>
+    </div>
+  </div>
+</section>
+
 <div class="container">
   <div class="columns">
     <div class="column is-one-third is-offset-one-third is-10-mobile is-offset-1-mobile">
-      <h2 class="title is-2">Log in</h2>
-
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email, class: 'label' %>
