@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_030455) do
   create_table "leagues", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.boolean "public", default: true
+    t.boolean "public", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
