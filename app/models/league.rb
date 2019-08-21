@@ -3,4 +3,8 @@ class League < ApplicationRecord
   validates :user, presence: true
 
   belongs_to :user
+
+  def public!
+    update(public: true)
+  end
 end

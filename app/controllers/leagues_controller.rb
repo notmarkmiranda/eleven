@@ -1,4 +1,6 @@
 class LeaguesController < ApplicationController
+  before_action :require_user, except: :show
+
   def show
     @league = League.find(params[:id])
   end
