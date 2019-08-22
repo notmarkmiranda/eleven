@@ -8,4 +8,6 @@ class User < ApplicationRecord
          :validatable
 
   validates :email, uniqueness: {case_sensitive: false}, presence: true
+
+  has_many :leagues
 end
