@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Membership, type: :model do
-  describe 'validations'
+  describe "validations"
 
-  describe 'relationships' do
+  describe "relationships" do
     it { should belong_to :user }
     it { should belong_to :league }
   end
 
-  describe 'methods'
+  describe "methods"
 end

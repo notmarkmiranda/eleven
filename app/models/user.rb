@@ -11,4 +11,8 @@ class User < ApplicationRecord
 
   has_many :leagues
   has_many :memberships
+
+  def all_leagues
+    League.joins(:memberships).where("memberships.user_id = ?", id)
+  end
 end

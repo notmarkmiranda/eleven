@@ -15,6 +15,7 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "bulma-rails", "~> 0.7.5"
 gem "jquery-rails"
 gem "devise"
+gem "font_awesome5_rails"
 
 group :development, :test do
   gem "factory_bot_rails"

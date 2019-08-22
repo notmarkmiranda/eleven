@@ -4,7 +4,7 @@ FactoryBot.define do
       "League #{n}"
     end
     location { "Denver, CO" }
-    public { false }
+    public_league { false }
     user
   end
 end
