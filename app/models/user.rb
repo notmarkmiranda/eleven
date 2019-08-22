@@ -10,4 +10,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: {case_sensitive: false}, presence: true
 
   has_many :leagues
+  has_many :memberships
 end

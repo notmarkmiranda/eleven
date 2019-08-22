@@ -8,6 +8,7 @@ describe User, type: :model do
 
   describe "relationships" do
     it { should have_many :leagues }
+    it { should have_many :memberships }
   end
 
   describe "methods"

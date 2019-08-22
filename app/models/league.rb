@@ -3,6 +3,7 @@ class League < ApplicationRecord
   validates :user, presence: true
 
   belongs_to :user
+  has_many :memberships
 
   def public!
     update(public: true)

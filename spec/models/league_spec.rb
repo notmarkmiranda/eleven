@@ -9,11 +9,12 @@ describe League, type: :model do
 
   describe 'relationships' do
     it { should belong_to :user}
+    it { should have_many :memberships }
   end
 
   describe 'methods' do
     let(:league) { create(:league) }
-    
+
     describe '#public!' do
       subject(:public_bang) { league.public! }
 
