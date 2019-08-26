@@ -1,0 +1,32 @@
+<div class="box">
+  <h1 class="title is-3">Leagues</h1>
+  <div class="table-container">
+    <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @leagues.empty? %>
+          <tr>
+            <td colspan="3">
+              You have no leagues, maybe try creating one first?
+            </td>
+          </tr>
+        <% else %>
+          <% @leagues.each do |league| %>
+            <tr>
+              <td><%= link_to league.name, league %></td>
+              <td><%= league.location %></td>
+              <td>Admin</td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+ </div>
+
