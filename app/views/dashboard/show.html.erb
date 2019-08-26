@@ -23,60 +23,75 @@
 
 <div class="container">
   <div class="columns">
-    <div class="column is-one-half">
-      <nav class="panel">
-        <p class="panel-heading">
-          Leagues
-        </p>
-        <a class="panel-block is-active">
-          <span class="panel-icon">
-            <i class="fas fa-money-bill" aria-hidden="true"></i>
-          </span>
-          bulma
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-money-bill" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-code-branch" aria-hidden="true"></i>
-          </span>
-          daniellowtw/infboard
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-code-branch" aria-hidden="true"></i>
-          </span>
-          mojs
-        </a>
-        <label class="panel-block">
-          <input type="checkbox">
-          remember me
-        </label>
-        <div class="panel-block">
-          <button class="button is-link is-outlined is-fullwidth">
-            reset all filters
-          </button>
+    <div class="column is-one-half is-10-mobile is-offset-1-mobile">
+      <div class="box">
+        <h1 class="title is-3">Leagues</h1>
+        <div class="table-container">
+          <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @leagues.empty? %>
+                <tr>
+                  <td colspan="3">
+                    You have no leagues, maybe try creating one first?
+                  </td>
+                </tr>
+              <% else %>
+                <% @leagues.each do |league| %>
+                <tr>
+                  <td><%= league.name %></td>
+                  <td><%= league.location %></td>
+                  <td>Admin</td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-      </nav>
+      </div>
+
+
     </div>
-    <div class="column is-one-half">
-      asdf
+    <div class="column is-one-half is-10-mobile is-offset-1-mobile">
+      <div class="box">
+        <h1 class="title is-3">Recent or Upcoming Games</h1>
+        <div class="table-container">
+          <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @leagues.empty? %>
+                <tr>
+                  <td colspan="3">
+                    You have no leagues.
+                  </td>
+                </tr>
+              <% else %>
+                <% @leagues.each do |league| %>
+                <tr>
+                  <td><%= league.name %></td>
+                  <td><%= league.location %></td>
+                  <td>Admin</td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </div>

@@ -3,7 +3,7 @@ class League < ApplicationRecord
   validates :user, presence: true
 
   belongs_to :user
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
 
   after_create :create_owner_admin
 
