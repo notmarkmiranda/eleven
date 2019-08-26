@@ -21,6 +21,6 @@ class LeaguesController < ApplicationController
   private
 
   def _league_params
-    params.require(:league).permit(:name, :location, :public)
+    params.require(:league).permit(:name, :location, :public_league)
   end
 end

@@ -3,7 +3,7 @@ class CreateLeagues < ActiveRecord::Migration[5.2]
     create_table :leagues do |t|
       t.string :name
       t.string :location
-      t.boolean :public, default: false
+      t.boolean :public_league, default: false
       t.references :user, foreign_key: true
 
       t.timestamps null: false

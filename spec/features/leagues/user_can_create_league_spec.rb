@@ -10,7 +10,7 @@ describe "User can create a new league", type: :feature do
 
     fill_in "Name", with: "Super Duper!"
     fill_in "Location", with: "Denver, Colorado"
-    find(:css, "#league_public").set(true)
+    find(:css, "#league_public_league").set(true)
 
     click_button "Create league!"
 

@@ -11,7 +11,7 @@ describe LeaguesController, type: :request do
         league.public!
       end
 
-      it 'should render the league#show page' do
+      it "should render the league#show page" do
         get_show
 
         expect(response).to have_http_status(200)
@@ -48,36 +48,37 @@ describe LeaguesController, type: :request do
   end
 
   describe "POST#create" do
-    subject(:post_create) { post leagues_path, params: league_attrs  }
+    subject(:post_create) { post leagues_path, params: league_attrs }
     describe "for a logged in user" do
       before { login_user }
 
       describe "with valid attributes" do
-        let(:league_attrs) { { league: attributes_for(:league) } }
+        let(:league_attrs) { {league: attributes_for(:league)} }
 
-        it 'should redirect to league#show page' do
+        it "should redirect to league#show page" do
           post_create
 
           expect(response).to have_http_status(302)
         end
 
-        it 'should change the League count' do
+        it "should change the League count" do
           expect {
             post_create
           }.to change(League, :count).by(1)
+            .and change(Membership, :count).by(1)
         end
       end
 
       describe "with invalid attributes" do
-        let(:league_attrs) { { league: attributes_for(:league).except(:name) } }
+        let(:league_attrs) { {league: attributes_for(:league).except(:name)} }
 
-        it 'should render a template' do
+        it "should render a template" do
           post_create
 
           expect(response).to have_http_status(200)
         end
 
-        it 'should not change the League count' do
+        it "should not change the League count" do
           expect {
             post_create
           }.not_to change(League, :count)
@@ -86,15 +87,15 @@ describe LeaguesController, type: :request do
     end
 
     describe "for a visitor" do
-      let(:league_attrs) { { league: attributes_for(:league) } }
+      let(:league_attrs) { {league: attributes_for(:league)} }
 
-      it 'should redirect' do
+      it "should redirect" do
         post_create
 
         expect(response).to have_http_status(302)
       end
 
-      it 'should not change League count' do
+      it "should not change League count" do
         expect {
           post_create
         }.not_to change(League, :count)
