@@ -1,7 +1,36 @@
-<div class="container">
-  <%= @league.name %>
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <%= @league.name %>
+      </h1>
+      <h2 class="subtitle">
+        <%= @league.location %>
+      </h2>
+    </div>
+  </div>
+
   <% if policy(@league).user_is_admin_on_league? %>
-    <%= button_to "Delete League", @league, method: :delete %>
-    <%= link_to "Edit League", edit_league_path(@league) %>
+    <div class="hero-foot">
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-start">
+            <%= link_to "Edit League", edit_league_path(@league), class: 'navbar-item' %>
+          </div>
+          <div class="navbar-end">
+            <%= button_to @league, class: 'button is-danger is-inverted', form_class: 'navbar-item', method: :delete do %>
+              <span class="icon">
+                <i class="fas fa-times-circle"></i>
+              </span>
+              <span>Delete League</span>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+    </div>
   <% end %>
+</section>
+
+<div class="container">
+  STATS WILL GO HERE!
 </div>
