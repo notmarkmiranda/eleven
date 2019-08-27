@@ -1,2 +1,6 @@
-<%= @league.name %>
-<%= button_to "Delete League", @league, method: :delete %>
+<div class="container">
+  <%= @league.name %>
+  <% if policy(@league).destroy? %>
+    <%= button_to "Delete League", @league, method: :delete %>
+  <% end %>
+</div>
