@@ -18,6 +18,12 @@ class LeaguesController < ApplicationController
     end
   end
 
+  def destroy
+    league = League.find(params[:id])
+    league.destroy
+    redirect_to dashboard_path
+  end
+
   private
 
   def _league_params
