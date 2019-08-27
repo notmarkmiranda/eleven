@@ -17,6 +17,7 @@ gem "devise"
 gem "draper"
 gem "font_awesome5_rails"
 gem "jquery-rails"
+gem "pundit"
 
 group :development, :test do
   gem "factory_bot_rails"
