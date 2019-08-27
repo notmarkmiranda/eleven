@@ -126,6 +126,37 @@ describe LeaguesController, type: :request do
     end
   end
 
+  describe "GET#edit" do
+    subject(:get_edit) { get edit_league_path(league) }
+
+    let(:user) { league.user }
+
+    before { login_user(user) }
+
+    describe "For an admin" do
+      it "should render the edit page" do
+        get_edit
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe "For a member" do
+      let(:membership) { league.memberships.last }
+      before { membership.update(role: 0) }
+
+      it "should redirect or raise" do
+        expect {
+          get_edit
+        }.to raise_error Pundit::NotAuthorizedError
+
+        # expect(response).to have_http_status(302)
+      end
+    end
+  end
+
+  describe "PATCH#update"
+
   describe "DELETE#destroy" do
     subject(:delete_destroy) { delete league_path(league) }
 

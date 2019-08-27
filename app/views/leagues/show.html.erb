@@ -1,6 +1,7 @@
 <div class="container">
   <%= @league.name %>
-  <% if policy(@league).destroy? %>
+  <% if policy(@league).user_is_admin_on_league? %>
     <%= button_to "Delete League", @league, method: :delete %>
+    <%= link_to "Edit League", edit_league_path(@league) %>
   <% end %>
 </div>
