@@ -21,7 +21,7 @@
             <tr>
               <td><%= link_to league.name, league %></td>
               <td><%= league.location %></td>
-              <td>Admin</td>
+              <td><%= league.current_user_role %></td>
             </tr>
           <% end %>
         <% end %>
@@ -29,4 +29,3 @@
     </table>
   </div>
  </div>
-
