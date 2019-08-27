@@ -1,9 +1,9 @@
 require "rails_helper"
 
 describe LeaguesController, type: :request do
-  describe "GET#show" do
-    let(:league) { create(:league) }
+  let(:league) { create(:league) }
 
+  describe "GET#show" do
     subject(:get_show) { get league_path(league) }
 
     describe "for a public league" do
@@ -19,7 +19,30 @@ describe LeaguesController, type: :request do
     end
 
     describe "for a private league" do
-      pending "need to write this test when membership model exists"
+      let(:user) { league.memberships.last.user }
+
+      before do
+        league.update(public_league: false)
+        login_user(user)
+      end
+
+      describe "for a member or admin on the league" do
+        it "should render" do
+          get_show
+
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      describe "for a non-member or non-admin on the league" do
+        before { league.memberships.destroy_all }
+
+        it "should redirect" do
+          expect {
+            get_show
+          }.to raise_error Pundit::NotAuthorizedError
+        end
+      end
     end
   end
 
@@ -99,6 +122,42 @@ describe LeaguesController, type: :request do
         expect {
           post_create
         }.not_to change(League, :count)
+      end
+    end
+  end
+
+  describe "DELETE#destroy" do
+    subject(:delete_destroy) { delete league_path(league) }
+
+    let(:user) { league.user }
+    let(:membership) { league.memberships.find_by(user: user) }
+
+    before { login_user(user) }
+
+    describe "for an admin on the league" do
+      before { membership.update(role: 1) }
+
+      it "should remove a league from the database" do
+        expect {
+          delete_destroy
+        }.to change(League, :count).by(-1)
+        .and change(Membership, :count).by(-1)
+      end
+
+      it "should redirect" do
+        delete_destroy
+
+        expect(response).to have_http_status(302)
+      end
+    end
+
+    describe "for a member on the league" do
+      before { membership.update(role: 0) }
+
+      it "should not remove a league from the database" do
+        expect {
+          delete_destroy
+        }.to raise_error Pundit::NotAuthorizedError
       end
     end
   end
