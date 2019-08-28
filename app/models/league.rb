@@ -13,6 +13,9 @@ class League < ApplicationRecord
     update(public_league: true)
   end
 
+  def seasons_in_order
+    seasons.order("created_at asc")
+  end
   private
 
   def create_inaugural_season
