@@ -1,0 +1,31 @@
+<div class="box">
+  <h1 class="title is-3">Seasons</h1>
+  <div class="table-container">
+    <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container">
+      <thead>
+        <tr>
+          <td>Season #</td>
+          <td>Start Date</td>
+          <td>Completed?</td>
+          <td>Active?</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @seasons.empty? %>
+          <tr>
+            <td colspan="4">
+              There are no seasons for this league.
+            </td>
+          </tr>
+        <% else %>
+          <tr>
+            <td>1</td>
+            <td>N/A</td>
+            <td>no</td>
+            <td>no</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
