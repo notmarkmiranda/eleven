@@ -15,7 +15,7 @@ describe "Admin can create new season", type: :feature do
       click_button "Create new season"
 
       expect(current_path).to eq(league_path(league))
-      expect(page).to have_content("#1")
+      expect(page).to have_content("1")
       expect(page).to have_content("N/A")
     end
   end
@@ -27,8 +27,10 @@ describe "Admin can create new season", type: :feature do
       click_button("Create new season")
 
       expect(current_path).to eq(league_path(league))
-      expect(page).to have_content("#1")
-      expect(page).to have_content("#2")
+      within('table#seasons-index') do
+        expect(page).to have_content("1")
+        expect(page).to have_content("2")
+      end
     end
   end
 
@@ -45,8 +47,9 @@ describe "Admin can create new season", type: :feature do
       click_button("Create new season")
 
       expect(current_path).to eq(league_path(league))
-      expect(page).to have_content("##{season_count}")
-      expect(page).to have_content("##{season_count + 1}")
+
+      expect(page).to have_content("#{season_count}")
+      expect(page).to have_content("#{season_count + 1}")
     end
   end
 end
