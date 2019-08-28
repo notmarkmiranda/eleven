@@ -14,16 +14,24 @@
     <div class="hero-foot">
       <div class="container">
         <nav class="navbar">
+          <div class="navbar-start">
+            <%= button_to seasons_path, class: 'button is-inverted is-fullwidth', form_class: 'navbar-item' do %>
+              <span class="icon">
+                <i class="fas fa-pen"></i>
+              </span>
+              <span>Create new season</span>
+            <% end %>
+          </div>
           <div class="navbar-end">
             <span class="navbar-item">
-              <%= link_to edit_league_path(@league), class: 'button is-inverted' do %>
+              <%= link_to edit_league_path(@league), class: 'button is-inverted is-fullwidth' do %>
                 <span class="icon">
                   <i class="fas fa-pen"></i>
                 </span>
                 <span>Edit League</span>
               <% end %>
             </span>
-            <%= button_to @league, class: 'button is-danger is-inverted', form_class: 'navbar-item', method: :delete do %>
+            <%= button_to @league, class: 'button is-danger is-inverted is-fullwidth', form_class: 'navbar-item', method: :delete do %>
               <span class="icon">
                 <i class="fas fa-times-circle"></i>
               </span>

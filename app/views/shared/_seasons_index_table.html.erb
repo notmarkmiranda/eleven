@@ -18,12 +18,14 @@
             </td>
           </tr>
         <% else %>
+          <% @seasons.each do |season| %>
           <tr>
             <td>1</td>
             <td>N/A</td>
             <td>no</td>
             <td>no</td>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
