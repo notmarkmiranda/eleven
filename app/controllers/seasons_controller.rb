@@ -5,6 +5,13 @@ class SeasonsController < ApplicationController
     redirect_to league
   end
 
+  def destroy
+    season = Season.find(params[:id])
+    authorize league
+    season.destroy
+    redirect_to league_path(league)
+  end
+
   private
 
   def came_from_league?

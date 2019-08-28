@@ -8,6 +8,9 @@
           <td>Start Date</td>
           <td>Completed?</td>
           <td>Active?</td>
+          <% if policy(@league).user_is_admin_on_league? %>
+            <td>Actions</td>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +27,15 @@
             <td>N/A</td>
             <td>no</td>
             <td>no</td>
+            <% if policy(@league).user_is_admin_on_league? %>
+              <td>
+                <%= button_to season, class: 'button is-danger delete-season', form_class: 'delete_season', method: :delete do %>
+                  <span class="icon">
+                    <i class="fas fa-times-circle"></i>
+                  </span>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
           <% end %>
         <% end %>
