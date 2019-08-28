@@ -37,8 +37,16 @@ describe "Admin can create new season", type: :feature do
       rand(1..10).times { create(:season, league: league) }
     end
 
+    let!(:season_count) { league.seasons.count }
+
     it "should create a n + 1 season" do
       visit league_path(league)
+
+      click_button("Create new season")
+
+      expect(current_path).to eq(league_path(league))
+      expect(page).to have_content("##{season_count}")
+      expect(page).to have_content("##{season_count + 1}")
     end
   end
 end
