@@ -88,7 +88,8 @@ describe LeaguesController, type: :request do
           expect {
             post_create
           }.to change(League, :count).by(1)
-            .and change(Membership, :count).by(1)
+          .and change(Membership, :count).by(1)
+          .and change(Season, :count).by(1)
         end
       end
 
@@ -102,9 +103,7 @@ describe LeaguesController, type: :request do
         end
 
         it "should not change the League count" do
-          expect {
-            post_create
-          }.not_to change(League, :count)
+          expect { post_create }.not_to change(League, :count)
         end
       end
     end
@@ -149,8 +148,6 @@ describe LeaguesController, type: :request do
         expect {
           get_edit
         }.to raise_error Pundit::NotAuthorizedError
-
-        # expect(response).to have_http_status(302)
       end
     end
   end

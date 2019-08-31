@@ -1,8 +1,13 @@
 class ApplicationDecorator < Draper::Decorator
-  # Define methods for all decorated objects.
-  # Helpers are accessed through `helpers` (aka `h`). For example:
-  #
-  #   def percent_amount
-  #     h.number_to_percentage object.amount, precision: 2
-  #   end
+  def times_icon
+    h.content_tag(:span, class: 'icon') do
+      h.content_tag(:i, '', class: 'fas fa-times-circle')
+    end
+  end
+
+  def check_icon
+    h.content_tag(:span, class: 'icon') do
+      h.content_tag(:i, '', class: 'fas fa-check-circle')
+    end
+  end
 end

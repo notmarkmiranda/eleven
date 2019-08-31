@@ -11,6 +11,7 @@ describe League, type: :model do
   describe "relationships" do
     it { should belong_to :user }
     it { should have_many :memberships }
+    it { should have_many :seasons }
   end
 
   describe "methods" do

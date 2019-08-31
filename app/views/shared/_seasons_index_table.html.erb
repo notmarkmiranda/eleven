@@ -1,0 +1,35 @@
+<div class="box">
+  <h1 class="title is-3">Seasons</h1>
+  <div class="table-container">
+    <table class="table is-striped is-narrow is-hoverable is-fullwidth table-container" id="seasons-index">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Start Date</td>
+          <td>Completed?</td>
+          <td>Active?</td>
+          <td>Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @seasons.empty? %>
+          <tr>
+            <td colspan="4">
+              There are no seasons for this league.
+            </td>
+          </tr>
+        <% else %>
+          <% @seasons.each do |season| %>
+          <tr>
+            <td><%= season.number %></td>
+            <td>N/A</td>
+            <td>no</td>
+            <td>no</td>
+            <td><%= link_to "View season", season_path(season), class: 'season-link' %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
