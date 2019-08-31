@@ -1,6 +1,7 @@
 class SeasonsController < ApplicationController
   def show
     @season = Season.find(params[:id]).decorate
+    authorize @season
   end
 
   def create

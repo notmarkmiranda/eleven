@@ -4,11 +4,59 @@ describe SeasonsController, type: :request do
   let(:league) { create(:league) }
   let(:user) { league.user }
   let(:original_season) { league.seasons_in_order.first }
+  let(:membership) { league.memberships.last }
 
   before { login_user(user) }
 
   describe "GET#show" do
-    describe ""
+    subject(:get_show) { get season_path(original_season) }
+
+    describe "when the league is public" do
+      before do
+        league.update(public_league: true)
+        logout_user
+      end
+
+      it "should render the season" do
+        get_show
+
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    describe "when the league is private" do
+      let(:membership) { league.memberships.last }
+
+      describe "when the user is a member" do
+        before { membership.update(role: 0) }
+
+        it "should render the season" do
+          get_show
+
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      describe "when the user is an admin" do
+        before { membership.update(role: 1) }
+
+        it "should render the season" do
+          get_show
+
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      describe "when the user not an admin or member" do
+        before { login_user }
+
+        it "should raise an error" do
+          expect {
+            get_show
+          }.to raise_error Pundit::NotAuthorizedError
+        end
+      end
+    end
   end
 
   describe "POST#create" do
@@ -30,7 +78,7 @@ describe SeasonsController, type: :request do
     end
 
     describe "for a non-admin on the league" do
-      before { user.memberships.last.update(role: 0) }
+      before { membership.update(role: 0) }
 
       it "should raise an error" do
         expect {
@@ -40,7 +88,50 @@ describe SeasonsController, type: :request do
     end
   end
 
-  describe "PATCH#update"
+  describe "PATCH#update" do
+    let(:season_params) { { season: { active: true } }}
 
-  describe "DELETE#destroy"
+    subject(:patch_update) { patch season_path(original_season), params: season_params }
+    describe 'for an admin on the league' do
+      before { original_season.update(active: false) }
+
+      it 'should update the season' do
+        expect {
+          patch_update; original_season.reload
+        }.to change { original_season.active }
+      end
+    end
+
+    describe 'for a non-admin on the league' do
+      before { membership.update(role: 0) }
+
+      it 'should raise an error' do
+        expect {
+          patch_update
+        }.to raise_error Pundit::NotAuthorizedError
+      end
+    end
+  end
+
+  describe "DELETE#destroy" do
+    subject(:delete_destroy) { delete season_path(original_season) }
+
+    describe 'when the user is an admin on the league' do
+      it 'should delete the season' do
+        expect {
+          delete_destroy
+        }.to change(Season, :count).by(-1)
+      end
+    end
+
+    describe 'when the user is a non-admin on the league' do
+      before { membership.update(role: 0) }
+
+      it 'should raise an error' do
+        expect {
+          delete_destroy
+        }.to raise_error Pundit::NotAuthorizedError
+      end
+    end
+  end
 end

@@ -5,12 +5,17 @@ class SeasonPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    return true if league.public_league?
+    memberships.where(user: user).any?
+  end
+
   def create?
     memberships.find_by(user_id: user.id)&.admin?
   end
 
   def update?
-    memberships.find_by(user_id: user.id)&.admin?
+    user && memberships.find_by(user_id: user.id)&.admin?
   end
 
   private
