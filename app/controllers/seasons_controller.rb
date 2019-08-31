@@ -1,4 +1,8 @@
 class SeasonsController < ApplicationController
+  def show
+    @season = Season.find(params[:id]).decorate
+  end
+
   def create
     return unless came_from_league? && league_id_is_valid?
     league.seasons.create!
@@ -7,9 +11,10 @@ class SeasonsController < ApplicationController
 
   def destroy
     season = Season.find(params[:id])
-    authorize league
+    current_league = season.league
+    authorize current_league
     season.destroy
-    redirect_to league_path(league)
+    redirect_to league_path(current_league)
   end
 
   private

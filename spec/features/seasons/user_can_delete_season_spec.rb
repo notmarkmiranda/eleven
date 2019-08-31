@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "User can delete season", type: :feature do
   let(:league) { create(:league) }
+  let(:season) { league.seasons.last.decorate }
 
   before { login_user(user) }
 
@@ -10,6 +11,10 @@ describe "User can delete season", type: :feature do
 
     it 'should delete the league and redirect to the league page' do
       visit league_path(league)
+      find('a.season-link').click
+
+      expect(current_path).to eq(season_path(season))
+
       find('button.delete-season').click
 
       expect(current_path).to eq(league_path(league))
@@ -23,8 +28,11 @@ describe "User can delete season", type: :feature do
     it 'should not show the destroy button' do
       visit league_path(league)
 
-      expect(page).to have_content("Seasons")
-      expect(page).not_to have_content("Actions")
+      find('a.season-link').click
+
+      expect(current_path).to eq(season_path(season))
+
+      expect(page).to have_content("Season ##{season.number}")
       expect(page).not_to have_css("button.delete-season")
     end
   end
