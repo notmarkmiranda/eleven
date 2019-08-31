@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title">
-        <%= "Season ##{@season.number}" %>
+        <%= "Season ##{@season.number} - #{@season.active_and_complete_text}" %>
       </h1>
       <h2 class="subtitle">
         <%= @season.league.name %>
@@ -22,15 +22,9 @@
             <% end %>
           </div>
           <div class="navbar-end">
-            <span class="navbar-item">
-              <%= link_to edit_league_path(@season.league), class: 'button is-inverted is-fullwidth' do %>
-                <span class="icon">
-                  <i class="fas fa-pen"></i>
-                </span>
-                <span>Edit League</span>
-              <% end %>
-            </span>
-            <%= button_to @league, class: 'button is-danger is-inverted is-fullwidth delete-season', form_class: 'navbar-item delete_season', method: :delete do %>
+            <%= @season.complete_or_uncomplete_button %>
+            <%= @season.activate_or_deactivate_button %>
+            <%= button_to @season, class: 'button is-danger is-inverted is-fullwidth delete-season', form_class: 'navbar-item delete_season', method: :delete do %>
               <span class="icon">
                 <i class="fas fa-times-circle"></i>
               </span>
@@ -42,3 +36,14 @@
     </div>
   <% end %>
 </section>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-half is-10-mobile is-offset-1-mobile">
+      standings will go here
+    </div>
+    <div class="column is-one-half is-10-mobile is-offset-1-mobile">
+      games will go here
+    </div>
+  </div>
+</div>

@@ -9,6 +9,13 @@ class SeasonsController < ApplicationController
     redirect_to league
   end
 
+  def update
+    @season = Season.find(params[:id])
+    authorize @season.league
+    @season.update(_season_params)
+    redirect_to @season
+  end
+
   def destroy
     season = Season.find(params[:id])
     current_league = season.league
@@ -18,6 +25,10 @@ class SeasonsController < ApplicationController
   end
 
   private
+
+  def _season_params
+    params.require(:season).permit(:active, :completed)
+  end
 
   def came_from_league?
     URI(request.referrer).path == league_path(league)
