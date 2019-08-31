@@ -5,13 +5,15 @@ class SeasonsController < ApplicationController
 
   def create
     return unless came_from_league? && league_id_is_valid?
-    league.seasons.create!
+    @season = league.seasons.new
+    authorize @season
+    @season.save!
     redirect_to league
   end
 
   def update
     @season = Season.find(params[:id])
-    authorize @season.league
+    authorize @season
     @season.update(_season_params)
     redirect_to @season
   end
