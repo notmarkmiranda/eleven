@@ -1,5 +1,6 @@
 class Season < ApplicationRecord
   belongs_to :league
+  has_many :games
 
   after_create :deactivate_other_seasons
 
