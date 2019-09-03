@@ -23,6 +23,12 @@
                 <span>Edit Game</span>
               <% end %>
             </span>
+            <%= button_to @game, class: 'button is-danger is-inverted is-fullwidth delete-game', form_class: 'navbar-item delete_game', method: :delete do %>
+              <span class="icon">
+                <i class="fas fa-times-circle"></i>
+              </span>
+              <span>Delete Game</span>
+            <% end %>
           </div>
         </nav>
       </div>

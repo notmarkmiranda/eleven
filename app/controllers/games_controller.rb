@@ -30,6 +30,13 @@ class GamesController < ApplicationController
     end
   end
 
+  def destroy
+    game = Game.find(params[:id])
+    league = game.league
+    game.destroy
+    redirect_to league
+  end
+
   private
 
   def _game_params
