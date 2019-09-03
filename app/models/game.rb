@@ -5,4 +5,5 @@ class Game < ApplicationRecord
   # validates :season, presence: true
 
   belongs_to :season
+  delegate :league, to: :season, prefix: false
 end

@@ -4,6 +4,10 @@ class Season < ApplicationRecord
 
   after_create :deactivate_other_seasons
 
+  def games_in_order
+    games.order("date asc")
+  end
+
   private
 
   def deactivate_other_seasons

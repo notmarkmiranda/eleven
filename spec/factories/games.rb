@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game do
-    date { "2019-08-31 19:00:00" }
+    date { "2019-08-31" }
     buy_in { 15 }
     address { "123 Fake Street, Denver, Colorado 80219" }
     season

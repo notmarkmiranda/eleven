@@ -9,6 +9,10 @@ class League < ApplicationRecord
   after_create :create_owner_admin
   after_create :create_inaugural_season
 
+  def current_season
+    seasons_in_order.find_by(active: true, completed: false)
+  end
+
   def public!
     update(public_league: true)
   end
@@ -16,6 +20,7 @@ class League < ApplicationRecord
   def seasons_in_order
     seasons.order("created_at asc")
   end
+
   private
 
   def create_inaugural_season

@@ -1,0 +1,31 @@
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <%= @game.full_date %>
+      </h1>
+      <h2 class="subtitle">
+        <%= "Game ##{@game.number} of Season ##{@game.season.decorate.number}" %><br />
+        <%= "Buy in: #{number_to_currency(@game.buy_in, precision: 0)} - #{@game.address}" %>
+      </h2>
+    </div>
+  </div>
+  <% if policy(@game.league).user_is_admin_on_league? %>
+    <div class="hero-foot">
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-end">
+            <span class="navbar-item">
+              <%= link_to edit_game_path(@game), class: 'button is-inverted is-fullwidth' do %>
+                <span class="icon">
+                  <i class="fas fa-pen"></i>
+                </span>
+                <span>Edit Game</span>
+              <% end %>
+            </span>
+          </div>
+        </nav>
+      </div>
+    </div>
+  <% end %>
+</section>

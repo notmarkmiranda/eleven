@@ -16,7 +16,7 @@ class SeasonDecorator < ApplicationDecorator
   end
 
   def number
-    index = league.seasons_in_order.find_index(object) + 1.to_i
+    league.seasons_in_order.find_index(object) + 1.to_i
   end
 
   private

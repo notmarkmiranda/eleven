@@ -14,12 +14,14 @@
       <div class="container">
         <nav class="navbar">
           <div class="navbar-start">
-            <%= button_to seasons_path, class: 'button is-inverted is-fullwidth', form_class: 'navbar-item' do %>
-              <span class="icon">
-                <i class="fas fa-pen"></i>
-              </span>
-              <span>Create new game</span>
-            <% end %>
+            <span class="navbar-item">
+              <%= link_to new_game_path, class: 'button is-inverted is-fullwidth' do %>
+                <span class="icon">
+                  <i class="fas fa-pen"></i>
+                </span>
+                <span>Create New Game</span>
+              <% end %>
+            </span>
           </div>
           <div class="navbar-end">
             <%= @season.complete_or_uncomplete_button %>

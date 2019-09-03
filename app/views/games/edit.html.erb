@@ -1,0 +1,20 @@
+<div class="container">
+  <%= form_for @game do |f| %>
+    <div class="field">
+      <%= f.label :date, class: "label" %>
+      <%= f.date_field :date, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label :buy_in, class: "label" %>
+      <%= f.text_field :buy_in, class: "input" %>
+    </div>
+    <div class="field">
+      <%= f.label :address, class: "label" %>
+      <%= f.text_field :address, class: "input" %>
+    </div>
+    <div class="actions">
+      <%= f.hidden_field :season_id, value: @game.season.id %>
+      <%= f.submit "Update Game!", class: "button is-normal is-fullwidth" %>
+    </div>
+  <% end %>
+</div>
