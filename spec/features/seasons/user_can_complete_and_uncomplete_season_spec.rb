@@ -12,9 +12,9 @@ describe "User can complete and uncomplete a season" do
     it "should complete a season and redirect to season_path" do
       visit season_path(season)
 
-      find('button.complete-season').click
+      find("button.complete-season").click
 
-      expect(page).to have_content('Completed')
+      expect(page).to have_content("Completed")
       expect(current_path).to eq(season_path(season))
       expect(page).to have_button("Uncomplete Season")
       expect(page).not_to have_button("Complete Season")
@@ -27,9 +27,9 @@ describe "User can complete and uncomplete a season" do
     it "should uncomplete a season and redirect to season_path" do
       visit season_path(season)
 
-      find('button.uncomplete-season').click
+      find("button.uncomplete-season").click
 
-      expect(page).to have_content('In Progress')
+      expect(page).to have_content("In Progress")
       expect(current_path).to eq(season_path(season))
       expect(page).to have_button("Complete Season")
       expect(page).not_to have_button("Uncomplete Season")

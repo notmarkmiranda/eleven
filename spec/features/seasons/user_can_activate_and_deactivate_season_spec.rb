@@ -12,7 +12,7 @@ describe "User can activate and deactivate a season" do
     it "should activate a season and redirect to season_path" do
       visit season_path(season)
 
-      find('button.activate-season').click
+      find("button.activate-season").click
 
       expect(page).to have_content("Season ##{season.number} - Active")
       expect(current_path).to eq(season_path(season))
@@ -27,7 +27,7 @@ describe "User can activate and deactivate a season" do
     it "should deactivate a season and redirect to season_path" do
       visit season_path(season)
 
-      find('button.deactivate-season').click
+      find("button.deactivate-season").click
 
       expect(page).to have_content("Season ##{season.number} - Not Active")
       expect(current_path).to eq(season_path(season))

@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe LeagueDecorator do
   let(:league) { create(:league).decorate }
-  describe '#current_user_role' do
+  describe "#current_user_role" do
     subject(:current_user_role) { league.current_user_role }
 
     let(:membership) { create(:membership, league: league) }

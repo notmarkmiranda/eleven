@@ -22,33 +22,33 @@ class SeasonDecorator < ApplicationDecorator
   private
 
   def activate_button
-    h.button_to object, class: 'button is-inverted is-fullwidth activate-season', form_class: 'navbar-item', params: { season: { active: true } }, method: :patch do
+    h.button_to object, class: "button is-inverted is-fullwidth activate-season", form_class: "navbar-item", params: {season: {active: true}}, method: :patch do
       check_icon + activate_text
     end
   end
 
   def activate_text
-    h.content_tag(:span, 'Activate Season')
+    h.content_tag(:span, "Activate Season")
   end
 
   def complete_button
-    h.button_to object, class: 'button is-inverted is-fullwidth complete-season', form_class: 'navbar-item', params: { season: { completed: true } }, method: :patch do
+    h.button_to object, class: "button is-inverted is-fullwidth complete-season", form_class: "navbar-item", params: {season: {completed: true}}, method: :patch do
       check_icon + complete_text
     end
   end
 
   def complete_text
-    h.content_tag(:span, 'Complete Season')
+    h.content_tag(:span, "Complete Season")
   end
 
   def deactivate_button
-    h.button_to object, class: 'button is-inverted is-danger is-fullwidth deactivate-season', form_class: 'navbar-item', params: { season: { active: false } }, method: :patch do
+    h.button_to object, class: "button is-inverted is-danger is-fullwidth deactivate-season", form_class: "navbar-item", params: {season: {active: false}}, method: :patch do
       times_icon + deactivate_text
     end
   end
 
   def deactivate_text
-    h.content_tag(:span, 'Deactivate Season')
+    h.content_tag(:span, "Deactivate Season")
   end
 
   def league
@@ -56,7 +56,7 @@ class SeasonDecorator < ApplicationDecorator
   end
 
   def uncomplete_button
-    h.button_to object, class: 'button is-inverted is-danger is-fullwidth uncomplete-season', form_class: 'navbar-item', params: { season: { completed: false } }, method: :patch do
+    h.button_to object, class: "button is-inverted is-danger is-fullwidth uncomplete-season", form_class: "navbar-item", params: {season: {completed: false}}, method: :patch do
       times_icon + uncomplete_text
     end
   end

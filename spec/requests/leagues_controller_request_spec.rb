@@ -88,8 +88,8 @@ describe LeaguesController, type: :request do
           expect {
             post_create
           }.to change(League, :count).by(1)
-          .and change(Membership, :count).by(1)
-          .and change(Season, :count).by(1)
+            .and change(Membership, :count).by(1)
+            .and change(Season, :count).by(1)
         end
       end
 
@@ -169,7 +169,7 @@ describe LeaguesController, type: :request do
         expect {
           delete_destroy
         }.to change(League, :count).by(-1)
-        .and change(Membership, :count).by(-1)
+          .and change(Membership, :count).by(-1)
       end
 
       it "should redirect" do

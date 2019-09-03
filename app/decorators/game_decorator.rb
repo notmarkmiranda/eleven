@@ -2,7 +2,7 @@ class GameDecorator < ApplicationDecorator
   delegate_all
 
   def full_date
-    date.strftime('%B %-e, %Y')
+    date.strftime("%B %-e, %Y")
   end
 
   def number
