@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id]).decorate
+    authorize @game
   end
 
   def new
     @game = season.games.new
+    authorize @game
   end
 
   def create
@@ -19,10 +21,12 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id]).decorate
+    authorize @game
   end
 
   def update
     @game = Game.find(params[:id])
+    authorize @game
     if @game.update(_game_params)
       redirect_to @game
     else
@@ -32,6 +36,7 @@ class GamesController < ApplicationController
 
   def destroy
     game = Game.find(params[:id])
+    authorize game
     league = game.league
     game.destroy
     redirect_to league
@@ -40,7 +45,7 @@ class GamesController < ApplicationController
   private
 
   def _game_params
-    params.require(:game).permit(:date, :buy_in, :address, :season_id)
+    params.require(:game).permit(:date, :buy_in, :address, :season_id, :completed)
   end
 
   def find_current_season(league_id)
@@ -60,10 +65,14 @@ class GamesController < ApplicationController
     @season ||= Season.find(season_id)
   end
 
-  def season_id
-    _game_params[:season_id]
-  rescue ActionController::ParameterMissing
+  def season_id_from_somewhere
     return find_current_season(id_from_path) if referrer_path.include?("leagues")
     id_from_path
+  end
+
+  def season_id
+    _game_params[:season_id] || season_id_from_somewhere
+  rescue ActionController::ParameterMissing
+    season_id_from_somewhere
   end
 end

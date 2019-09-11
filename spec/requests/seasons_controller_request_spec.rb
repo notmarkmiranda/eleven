@@ -60,7 +60,7 @@ describe SeasonsController, type: :request do
   end
 
   describe "POST#create" do
-    let(:headers) { {"HTTP_REFERER" => "http://localhost:300/leagues/#{league.id}"} }
+    let(:headers) { {"HTTP_REFERER" => "http://localhost:3000/leagues/#{league.id}"} }
     subject(:post_create) { post seasons_path, headers: headers }
 
     describe "for an admin on the league" do

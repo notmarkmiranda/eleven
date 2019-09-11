@@ -14,6 +14,23 @@
     <div class="hero-foot">
       <div class="container">
         <nav class="navbar">
+          <div class="navbar-start">
+            <% if @game.completed? %>
+              <%= button_to @game, class: 'button is-inverted is-fullwidth uncomplete-game', form_class: 'navbar-item uncomplete-game', params: {game: {completed: false}}, method: :patch do %>
+                <span class="icon">
+                  <i class="fas fa-pen-circle"></i>
+                </span>
+                <span>Uncomplete Game</span>
+              <% end %>
+            <% else %>
+            <%= button_to @game, class: 'button is-inverted is-fullwidth uncomplete-game', form_class: 'navbar-item uncomplete-game', params: {game: {completed: true}}, method: :patch do %>
+              <span class="icon">
+                <i class="fas fa-pen-circle"></i>
+              </span>
+              <span>Complete Game</span>
+            <% end %>
+            <% end %>
+          </div>
           <div class="navbar-end">
             <span class="navbar-item">
               <%= link_to edit_game_path(@game), class: 'button is-inverted is-fullwidth' do %>
